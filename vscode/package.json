@@ -2,7 +2,7 @@
   "name": "leon-theme",
   "displayName": "Leon Themes",
   "description": "JetBrains 'Leon Light' / 'Leon Dark' 컬러 스키마를 VS Code로 이식한 테마",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "publisher": "0xf07ce",
   "license": "MIT",
   "author": "0xf07ce",

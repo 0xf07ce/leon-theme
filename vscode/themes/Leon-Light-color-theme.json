@@ -3,7 +3,7 @@
   "type": "light",
   "semanticHighlighting": true,
   "colors": {
-    "editor.background": "#f6f6f6",
+    "editor.background": "#ededed",
     "editor.foreground": "#2e2e2e",
     "editorCursor.foreground": "#1a1a1a",
     "editor.selectionBackground": "#c4d0dc",
@@ -14,7 +14,7 @@
     "editorLineNumber.activeForeground": "#1a1a1a",
     "editorIndentGuide.background1": "#c8c8c8",
     "editorIndentGuide.activeBackground1": "#9a9a9a",
-    "editorGutter.background": "#edf0ee",
+    "editorGutter.background": "#e6e6e6",
     "editorRuler.foreground": "#d2d2d2",
     "editorWhitespace.foreground": "#c4c4c4",
     "editor.foldBackground": "#cfcf9e40",
@@ -23,20 +23,20 @@
     "editorWarning.foreground": "#be9117",
     "editorInfo.foreground": "#aaaaaa",
 
-    "terminal.background": "#f6f6f6",
+    "terminal.background": "#ededed",
     "terminal.foreground": "#2e2e2e",
 
     "activityBar.background": "#dadada",
     "activityBar.foreground": "#1a1a1a",
-    "sideBar.background": "#f0f0ee",
+    "sideBar.background": "#f0f0f0",
     "sideBar.foreground": "#2e2e2e",
     "statusBar.background": "#dadada",
     "statusBar.foreground": "#1a1a1a",
     "titleBar.activeBackground": "#dadada",
     "titleBar.activeForeground": "#1a1a1a",
-    "tab.activeBackground": "#f6f6f6",
-    "tab.inactiveBackground": "#e8e8e6",
-    "editorGroupHeader.tabsBackground": "#e8e8e6"
+    "tab.activeBackground": "#ededed",
+    "tab.inactiveBackground": "#e8e8e8",
+    "editorGroupHeader.tabsBackground": "#e8e8e8"
   },
   "tokenColors": [
     {
@@ -158,6 +158,12 @@
     },
     {
       "scope": ["variable", "variable.other"],
+      "settings": {
+        "foreground": "#2e2e2e"
+      }
+    },
+    {
+      "scope": ["string.unquoted.plain.out.yaml", "string.unquoted.plain.in.yaml", "string.quoted.single.yaml", "string.quoted.double.yaml", "string.unquoted.block.yaml"],
       "settings": {
         "foreground": "#2e2e2e"
       }
