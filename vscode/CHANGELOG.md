@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Leon Light: 배경의 옅은 초록빛을 제거하고 중립 회색(`#f6f6f6`)으로 조정.
+
 ## 1.1.0
 
 - **Leon Dark** 테마 추가 (`Leon_Dark.icls` 기반, Darcula 계열).
