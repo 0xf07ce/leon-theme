@@ -1,0 +1,45 @@
+{
+  "name": "leon-theme",
+  "displayName": "Leon Themes",
+  "description": "JetBrains 'Leon Light' / 'Leon Dark' 컬러 스키마를 VS Code로 이식한 테마",
+  "version": "1.1.0",
+  "publisher": "0xf07ce",
+  "license": "MIT",
+  "author": "0xf07ce",
+  "homepage": "https://github.com/0xf07ce/leon-theme#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xf07ce/leon-theme.git",
+    "directory": "vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/0xf07ce/leon-theme/issues"
+  },
+  "keywords": [
+    "theme",
+    "color-theme",
+    "jetbrains",
+    "light",
+    "dark"
+  ],
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Leon Light",
+        "uiTheme": "vs",
+        "path": "./themes/Leon-Light-color-theme.json"
+      },
+      {
+        "label": "Leon Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Leon-Dark-color-theme.json"
+      }
+    ]
+  }
+}
