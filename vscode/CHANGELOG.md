@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.3
+
+- Leon Light: editor, terminal, sidebar, tab, and status bar backgrounds darkened for better contrast.
+- README: installation instructions updated in English and iTerm2 preset filename aligned with `Leon_Light.itermcolors`.
+
 ## 1.1.2
 
 - Leon Light: YAML 값(문자열)을 기본 검정(`#2e2e2e`)으로 표시하는 규칙 추가.

@@ -14,7 +14,7 @@ JetBrains의 **Leon Light** / **Leon Dark** 컬러 스키마(`.icls`)를 Visual 
 [Releases](https://github.com/0xf07ce/leon-theme/releases)에서 최신 `.vsix`를 받아:
 
 ```bash
-code --install-extension leon-theme-1.1.0.vsix
+code --install-extension leon-theme-1.1.3.vsix
 ```
 
 또는 VS Code에서 `Cmd+Shift+P` → **Extensions: Install from VSIX...** 로 선택.

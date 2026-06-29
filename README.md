@@ -1,35 +1,35 @@
 # Leon Theme
 
-여러 에디터에서 동일한 look & feel을 유지하기 위한 **Leon** 컬러 테마 모음입니다. JetBrains의 `.icls` 스키마가 원본이며, 이를 다른 플랫폼으로 이식해 함께 관리합니다.
+**Leon** is a collection of color themes for keeping a consistent look and feel across multiple editors. The JetBrains `.icls` schemes are the source of truth, and the other platform versions are maintained as ports.
 
-## 구성
+## Contents
 
-| 폴더 | 플랫폼 | 내용 |
-|------|--------|------|
-| [`vscode/`](./vscode) | Visual Studio Code | Leon Light / Leon Dark 테마 확장 |
-| [`jetbrains/`](./jetbrains) | JetBrains IDE (CLion 등) | `Leon_Light.icls`, `Leon_Dark.icls` (원본) |
-| [`iterm/`](./iterm) | iTerm2 | `leon-light.itermcolors` |
+| Folder | Platform | Description |
+|--------|----------|-------------|
+| [`vscode/`](./vscode) | Visual Studio Code | Leon Light / Leon Dark theme extension |
+| [`jetbrains/`](./jetbrains) | JetBrains IDEs (CLion, etc.) | `Leon_Light.icls`, `Leon_Dark.icls` (source schemes) |
+| [`iterm/`](./iterm) | iTerm2 | `Leon_Light.itermcolors` |
 
-## 설치
+## Installation
 
 ### VS Code
 
-[Releases](https://github.com/0xf07ce/leon-theme/releases)의 `.vsix`로 설치하거나:
+Install the `.vsix` file from [Releases](https://github.com/0xf07ce/leon-theme/releases), or run:
 
 ```bash
-code --install-extension leon-theme-1.1.0.vsix
+code --install-extension leon-theme-1.1.3.vsix
 ```
 
-자세한 사용법(테마 선택, OS 다크모드 자동 전환)은 [`vscode/README.md`](./vscode/README.md) 참고.
+See [`vscode/README.md`](./vscode/README.md) for usage details, including theme selection and automatic switching with the OS color scheme.
 
 ### JetBrains
 
-Settings → Editor → Color Scheme → 톱니바퀴 → **Import Scheme...** 에서 [`jetbrains/`](./jetbrains)의 `.icls` 파일 선택.
+Open Settings -> Editor -> Color Scheme -> gear icon -> **Import Scheme...**, then select one of the `.icls` files in [`jetbrains/`](./jetbrains).
 
 ### iTerm2
 
-Settings → Profiles → Colors → **Color Presets... → Import** 에서 [`iterm/leon-light.itermcolors`](./iterm/leon-light.itermcolors) 선택.
+Open Settings -> Profiles -> Colors -> **Color Presets... -> Import**, then select [`iterm/Leon_Light.itermcolors`](./iterm/Leon_Light.itermcolors).
 
-## 라이선스
+## License
 
 [MIT](./LICENSE)
