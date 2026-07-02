@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.4
+
+- Leon Light: 배경을 아이보리(`#f7f3e9`)로 복원.
+- Leon Light: 구문 색상 개편 — 키워드 선명한 녹색(`#009610`), 클래스·타입(`#0036e0`), 문자열 검정(`#000000`), 숫자 앰버 오렌지(`#e06600`), 변수 계열 브라운(`#9d7124`), C++ 네임스페이스(`#357b88`) 분리.
+- README: 테마 소개·색상표를 현재 값으로 정정.
+
 ## 1.1.3
 
 - Leon Light: editor, terminal, sidebar, tab, and status bar backgrounds darkened for better contrast.

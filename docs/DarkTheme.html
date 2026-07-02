@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leon Dark — Theme Reference</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #1c1c1c;
+    color: #ddd;
+  }
+  header {
+    padding: 20px 28px;
+    background: #232323;
+    border-bottom: 1px solid #333;
+  }
+  header h1 { margin: 0 0 4px; font-size: 20px; }
+  header p { margin: 0; color: #999; font-size: 13px; }
+  .layout {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 0;
+    height: calc(100vh - 74px);
+  }
+  .panel-left {
+    overflow-y: auto;
+    padding: 16px 20px 60px;
+    border-right: 1px solid #333;
+    background: #202020;
+  }
+  .panel-right {
+    overflow-y: auto;
+    padding: 24px;
+  }
+  h2.section {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #888;
+    margin: 22px 0 8px;
+    border-bottom: 1px solid #383838;
+    padding-bottom: 6px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+  }
+  .swatch {
+    width: 34px; height: 34px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    background: none;
+  }
+  .label { flex: 1 1 auto; min-width: 0; }
+  .label .name { font-size: 13px; font-weight: 600; }
+  .label .desc { font-size: 11px; color: #888; }
+  .hex {
+    width: 84px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    padding: 5px 6px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background: #2a2a2a;
+    color: #ddd;
+  }
+  .rgb {
+    width: 118px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: #888;
+    text-align: right;
+  }
+  .preview-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,.5);
+  }
+  .preview-title {
+    padding: 8px 14px;
+    font-size: 12px;
+    font-family: ui-monospace, monospace;
+    background: var(--ui-gutter);
+    color: var(--fg);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  pre.code {
+    margin: 0;
+    padding: 18px 20px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13.5px;
+    line-height: 1.65;
+    background: var(--bg);
+    color: var(--fg);
+    overflow-x: auto;
+  }
+  .ln { color: var(--ui-linenr); user-select: none; display: inline-block; width: 2.2em; text-align: right; margin-right: 1.2em; }
+  .cmt { color: var(--c-comment); font-style: italic; }
+  .doc { color: var(--c-doc); font-style: italic; }
+  .kw  { color: var(--c-keyword); }
+  .str { color: var(--c-string); }
+  .esc { color: var(--c-escape); }
+  .num { color: var(--c-number); }
+  .cst { color: var(--c-constant); }
+  .fn  { color: var(--c-function); }
+  .fnb { color: var(--c-function-builtin); }
+  .cls { color: var(--c-class); }
+  .ifc { color: var(--c-interface); }
+  .typ { color: var(--c-type); }
+  .ns  { color: var(--c-namespace); }
+  .par { color: var(--c-parameter); font-style: italic; }
+  .var { color: var(--c-variable); }
+  .slf { color: var(--c-self); }
+  .att { color: var(--c-attribute); }
+  .dec { color: var(--c-decorator); text-decoration: underline; }
+  .note { font-size:11px; color:#777; margin-top:10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Leon Dark — Theme Reference &amp; Live Playground</h1>
+  <p>요소별 색상을 편집하면 오른쪽 코드 프리뷰에 즉시 반영됩니다. (변경값은 저장되지 않습니다 · 새로고침 시 원복)</p>
+</header>
+
+<div class="layout">
+  <div class="panel-left" id="controls"></div>
+  <div class="panel-right">
+    <div class="preview-wrap">
+      <div class="preview-title">preview.ts / preview.py</div>
+      <pre class="code" id="preview"></pre>
+    </div>
+    <p class="note">RGB 값은 HEX에서 자동 계산됩니다. HEX 입력칸에 직접 값을 넣거나 스와치를 클릭해 색을 고르세요.</p>
+  </div>
+</div>
+
+<script>
+// ---- Theme element data (from vscode/themes/Leon-Dark-color-theme.json) ----
+const GROUPS = [
+  { section: "Editor / UI", items: [
+    { var: "--bg",         name: "Background",     desc: "editor.background",  hex: "#000000" },
+    { var: "--fg",         name: "Foreground",     desc: "editor.foreground / text", hex: "#c0c0c0" },
+    { var: "--ui-gutter",  name: "Gutter",         desc: "editorGutter.background", hex: "#111315" },
+    { var: "--ui-linenr",  name: "Line number",    desc: "editorLineNumber.foreground", hex: "#606060" },
+  ]},
+  { section: "Comments", items: [
+    { var: "--c-comment",  name: "Comment",        desc: "comment", hex: "#606060" },
+    { var: "--c-doc",      name: "Doc comment",    desc: "comment.documentation (italic)", hex: "#2e7363" },
+  ]},
+  { section: "Keywords & Constants", items: [
+    { var: "--c-keyword",  name: "Keyword",        desc: "keyword, storage, tag → 녹색", hex: "#77b767" },
+    { var: "--c-constant", name: "Constant / Macro", desc: "constant.other, macro → 보라", hex: "#9876aa" },
+    { var: "--c-decorator",name: "Decorator / Namespace", desc: "meta.decorator, namespace", hex: "#4ec9b0" },
+  ]},
+  { section: "Strings & Numbers", items: [
+    { var: "--c-string",   name: "String",         desc: "string, string.template", hex: "#6897bb" },
+    { var: "--c-escape",   name: "String escape",  desc: "constant.character.escape", hex: "#3c9985" },
+    { var: "--c-number",   name: "Number",         desc: "constant.numeric → 노랑", hex: "#e1e100" },
+  ]},
+  { section: "Functions", items: [
+    { var: "--c-function", name: "Function / Method", desc: "entity.name.function → 레드", hex: "#cc3333" },
+    { var: "--c-function-builtin", name: "Builtin function", desc: "support.function.builtin", hex: "#cc336e" },
+  ]},
+  { section: "Types", items: [
+    { var: "--c-class",    name: "Class / Struct", desc: "entity.name.type/class → 파랑", hex: "#0080ff" },
+    { var: "--c-interface",name: "Interface / Enum", desc: "interface, enum", hex: "#40bcff" },
+    { var: "--c-type",     name: "Type / TypeParam", desc: "type, typedef, primitive", hex: "#5555ff" },
+    { var: "--c-namespace",name: "Namespace",      desc: "entity.name.namespace", hex: "#4ec9b0" },
+  ]},
+  { section: "Variables & Members", items: [
+    { var: "--c-variable", name: "Variable / Field / Property", desc: "variable, property → 오렌지", hex: "#cc7832" },
+    { var: "--c-parameter",name: "Parameter",      desc: "variable.parameter (italic)", hex: "#cc7832" },
+    { var: "--c-self",     name: "self / static / instance member", desc: "JS instance member, self → 라벤더", hex: "#9876aa" },
+    { var: "--c-attribute",name: "HTML attribute", desc: "entity.other.attribute-name", hex: "#8a653b" },
+  ]},
+];
+
+const CODE = `<span class="ln">1</span><span class="cmt">// Leon Dark — syntax sample</span>
+<span class="ln">2</span><span class="doc">/** Represents an RGB color triplet */</span>
+<span class="ln">3</span><span class="kw">import</span> { <span class="cls">Color</span> } <span class="kw">from</span> <span class="str">"./color"</span>;
+<span class="ln">4</span>
+<span class="ln">5</span><span class="kw">export</span> <span class="kw">interface</span> <span class="ifc">Palette</span> {
+<span class="ln">6</span>  <span class="var">name</span>: <span class="typ">string</span>;
+<span class="ln">7</span>  <span class="var">size</span>: <span class="typ">number</span>;
+<span class="ln">8</span>}
+<span class="ln">9</span>
+<span class="ln">10</span><span class="kw">enum</span> <span class="ifc">Mode</span> { <span class="cst">Light</span>, <span class="cst">Dark</span> }
+<span class="ln">11</span>
+<span class="ln">12</span><span class="dec">@sealed</span>
+<span class="ln">13</span><span class="kw">class</span> <span class="cls">Theme</span> <span class="kw">implements</span> <span class="ifc">Palette</span> {
+<span class="ln">14</span>  <span class="kw">private</span> <span class="var">mode</span>: <span class="ifc">Mode</span> = <span class="cst">Mode</span>.<span class="cst">Light</span>;
+<span class="ln">15</span>
+<span class="ln">16</span>  <span class="fn">render</span>(<span class="par">count</span>: <span class="typ">number</span>): <span class="typ">string</span> {
+<span class="ln">17</span>    <span class="kw">const</span> <span class="par">tag</span> = <span class="str">\`items: \${</span><span class="par">count</span><span class="str">}\\n\`</span>;
+<span class="ln">18</span>    <span class="slf">this</span>.<span class="fn">log</span>(<span class="num">0xFF</span>, <span class="num">42.5</span>);
+<span class="ln">19</span>    <span class="kw">return</span> <span class="slf">this</span>.<span class="var">name</span> + <span class="str">"\\t"</span> + <span class="esc">"\\u00A0"</span>;
+<span class="ln">20</span>  }
+<span class="ln">21</span>}
+<span class="ln">22</span>
+<span class="ln">23</span><span class="cmt"># python flavor</span>
+<span class="ln">24</span><span class="ns">os</span>.<span class="fnb">getcwd</span>()
+<span class="ln">25</span><span class="kw">def</span> <span class="fn">build</span>(<span class="slf">self</span>, <span class="par">opts</span>):
+<span class="ln">26</span>    <span class="kw">return</span> <span class="fnb">print</span>(<span class="att">mode</span>=<span class="cst">Mode</span>.<span class="cst">Dark</span>)`;
+
+const root = document.documentElement;
+function hexToRgb(h){
+  h = h.replace('#','');
+  if(h.length===3) h = h.split('').map(c=>c+c).join('');
+  const n = parseInt(h,16);
+  return [(n>>16)&255,(n>>8)&255,n&255];
+}
+function setVar(v, hex){ root.style.setProperty(v, hex); }
+
+const controls = document.getElementById('controls');
+GROUPS.forEach(g=>{
+  const h = document.createElement('h2');
+  h.className='section'; h.textContent=g.section;
+  controls.appendChild(h);
+  g.items.forEach(it=>{
+    setVar(it.var, it.hex);
+    const row = document.createElement('div'); row.className='row';
+    const sw = document.createElement('input');
+    sw.type='color'; sw.className='swatch'; sw.value=it.hex;
+    const lab = document.createElement('div'); lab.className='label';
+    lab.innerHTML = `<div class="name">${it.name}</div><div class="desc">${it.desc}</div>`;
+    const hex = document.createElement('input');
+    hex.type='text'; hex.className='hex'; hex.value=it.hex;
+    const rgb = document.createElement('span'); rgb.className='rgb';
+    const updateRgb = (hx)=>{ const [r,gg,b]=hexToRgb(hx); rgb.textContent=`rgb(${r}, ${gg}, ${b})`; };
+    updateRgb(it.hex);
+    const apply = (hx)=>{ setVar(it.var, hx); updateRgb(hx); };
+    sw.addEventListener('input', e=>{ hex.value=e.target.value; apply(e.target.value); });
+    hex.addEventListener('input', e=>{
+      let val = e.target.value.trim();
+      if(!val.startsWith('#')) val = '#'+val;
+      if(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(val)){ sw.value = val.length===4 ? '#'+val.slice(1).split('').map(c=>c+c).join('') : val; apply(val); }
+    });
+    row.append(sw, lab, hex, rgb);
+    controls.appendChild(row);
+  });
+});
+
+document.getElementById('preview').innerHTML = CODE;
+</script>
+</body>
+</html>
